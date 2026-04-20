@@ -6,20 +6,31 @@ import java.util.Scanner;
 // Classe principale, con metodo main
 class Esercizio {
     // Il programma parte con una chiamata a main().
-    public static void main(String args[])
-    {
-        //Variabili del programma
-        String nome;
+    public static void main(String args[]){
+        Scanner in = new Scanner(System.in);
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        Pila<Character> pila = new Pila<>();
+        String parola;
+        do{
+            
+            System.out.print("Inserire parola");
+            parola = in.nextLine();
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
+            if(!parola.equalsIgnoreCase("X")){
+                for(int i = 0; i < parola.length(); ++i){
+                    pila.push(parola.charAt(i));
+                }
 
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
+                String palindrom = "";
+                while(!pila.isEmpty()){
+                    palindrom += pila.pop();
+                }
+
+                if(parola.equalsIgnoreCase(palindrom)){
+                    System.out.println("la parola" + parola + " è palindorma");
+                }
+            }
+        }while(!parola.equalsIgnoreCase("x"));
     }
 }
 
